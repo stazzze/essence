@@ -1,0 +1,51 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+body {
+    background-color: rgb(22, 22, 22);;
+    color: white;
+    font: 300 18px/1.6 "Poppins", sans-serif;
+
+}
+
+#site-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    -webkit-transition: height .2s linear;
+    -o-transition: height .2s linear;
+    transition: height .2s linear;;
+    width: 100%;
+    z-index: 500;
+    background-color: rgb(22, 22, 22);;
+    border: 1px solid white;
+    height: 150px;
+    top: 0;
+    left: 0;
+}
+
+
+.logo {
+    font-size: 35px;
+    font-weight: 400;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.logo-the {
+    font-size: 14px;
+    font-weight: 300;
+}
