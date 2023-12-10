@@ -17,11 +17,10 @@ function updateContent() {
 
 // Execute the updateContent function when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  // Replace 'style.css' with the actual name of your CSS file
+  // Fetch and apply CSS styles
   fetch('style.css')
     .then(response => response.text())
     .then(css => {
-      // Apply styles
       if (css) {
         applyStyles(css);
       }
