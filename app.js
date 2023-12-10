@@ -1,40 +1,35 @@
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
+// app.js
 
-async function handleRequest(request) {
-  try {
-    // Dynamically generate GitHub URL based on the request path
-    const path = request.url.pathname.slice(1);  // Remove leading "/"
-    const githubUrl = `https://raw.githubusercontent.com/stazzze/essence/main/${path}`;
+// Function to apply CSS styles
+function applyStyles(css) {
+  const styleElement = document.createElement('style');
+  styleElement.textContent = css;
+  document.head.appendChild(styleElement);
+}
 
-    // Fetch the content from GitHub
-    const response = await fetch(githubUrl);
+// Function to update content
+function updateContent() {
+  const contentElement = document.getElementById('content');
+  if (contentElement) {
+    contentElement.innerHTML = 'Hello, World! This content is updated by JavaScript.';
+  }
+}
 
-    // Modify the response headers if needed
-    const contentType = getContentType(path);
-    const modifiedHeaders = new Headers(response.headers);
-    modifiedHeaders.set('Content-Type', contentType);
+// Execute the updateContent function when the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Replace 'style.css' with the actual name of your CSS file
+  fetch('style.css')
+    .then(response => response.text())
+    .then(css => {
+      // Apply styles
+      if (css) {
+        applyStyles(css);
+      }
 
-    return new Response(await response.text(), {
-      status: response.status,
-      statusText: response.statusText,
-      headers: modifiedHeaders,
+      // Update content
+      updateContent();
+    })
+    .catch(error => {
+      console.error('Error fetching CSS:', error);
     });
-  } catch (error) {
-    return new Response('Error fetching content', { status: 500 });
-  }
-}
-
-function getContentType(path) {
-  // Simple function to determine Content-Type based on file extension
-  if (path.endsWith('.html')) {
-    return 'text/html';
-  } else if (path.endsWith('.css')) {
-    return 'text/css';
-  } else if (path.endsWith('.js')) {
-    return 'application/javascript';
-  } else {
-    return 'text/plain';
-  }
-}
+});
